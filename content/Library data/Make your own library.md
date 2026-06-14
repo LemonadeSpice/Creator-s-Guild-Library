@@ -1,3 +1,6 @@
+---
+description: A guide on how to use git, GitHub Pages and Quartz to generate a web generated with markdown files managed by Obsidian
+---
 ## Overview
 
 ### Resulting workflow
@@ -17,11 +20,13 @@
 - A [GitHub](https://github.com/) account
 - [nodejs](https://nodejs.org/en)
 - [git](https://git-scm.com/)
-- [Github Desktop](https://desktop.github.com/download/) (simplest local git login cause fuck the new buggy console login)
+- [Github Desktop](https://desktop.github.com/download/) 
 - [Obsidian](https://obsidian.md/)
 
 ## Steps
-1. Go to the [Quartz repository](https://github.com/jackyzha0/quartz) on GitHub and click on "Create a Template" at the top right corner![[Pasted image 20260614101526.png]]![[Pasted image 20260614101227.png]]
+1. Go to the [Quartz repository](https://github.com/jackyzha0/quartz) on GitHub and click on "Create a Template" at the top right corner
+	- ![[Pasted image 20260614101526.png]]
+	- ![[Pasted image 20260614101227.png]]
 2. Rename branch v5 to "main" to follow git best practices, otherwise your main branch will be called v5 for absolutely no reason
 	1. Go to the repository's settings 
 		- ![[Pasted image 20260614103148.png]]
