@@ -13,3 +13,5 @@
 	- Check [[Grant access to a repository]]
 2. Clone the repository
 3. Open it up on Unity!
+
+^ minion note: open the scene too!
