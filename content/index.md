@@ -1,5 +1,5 @@
 ---
-title: Welcome to Quartz
+title: Welcome to the Creator's Guild Library
 ---
 
 This is a blank Quartz installation.
