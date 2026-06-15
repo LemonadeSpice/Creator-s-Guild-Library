@@ -6,7 +6,9 @@
 - Downloads/uploads changes **only**, much better than sending the whole file every time
 
 >[!info]
->Nowadays you don't have to use the big scary terminal, [Github Desktop](https://desktop.github.com/download/) runs most of the same commands you can run on terminal but they have comfortable buttons and UI instead
+>Nowadays you don't have to use the big scary terminal, [Github Desktop](https://desktop.github.com/download/) runs most of the same commands you can run on terminal but they are comfortable buttons and UI instead
+>
+>![[Pasted image 20260614183440.png]]
 ## What to do to not break it
 - Let your team know when you're working on a file (avoids merge conflicts)
 - Don't touch files being edited by other people

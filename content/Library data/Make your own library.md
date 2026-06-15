@@ -1,5 +1,5 @@
 ---
-description: A guide on how to use git, GitHub Pages and Quartz to generate a web generated with markdown files managed by Obsidian
+description: Create a library like this one using git, Quartz, GitHub Pages and managing it with Obsidian
 ---
 ## Overview
 

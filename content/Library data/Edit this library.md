@@ -1,5 +1,5 @@
 ---
-description: A guide on how to get this library on your pc to edit it locally
+description: Get this library working on your computer
 ---
 
 ### Prerequisites

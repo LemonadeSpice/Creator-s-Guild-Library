@@ -1,5 +1,8 @@
+---
+description: Everything you need to know regarding getting and uploading changes to the library
+---
 ## Saving
-Obsidian handles saving on its own, don't worry about it
+Obsidian handles local saving on its own, don't worry about it
 
 ## Git usage from Obsidian
 - Ctrl + P to open the Obsidian command bar
