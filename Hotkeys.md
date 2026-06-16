@@ -14,3 +14,5 @@
 | Alt + down arrow                     | Move line down       |
 | Ctrl + -                             | Toggle code line     |
 | Ctrl + Shift + -                     | Toggle code block    |
+| Ctrl + Q                             | Git pull             |
+| Ctrl + A                             | Git commit & sync    |
