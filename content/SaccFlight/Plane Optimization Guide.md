@@ -1,17 +1,18 @@
 ---
 description: A bunch of objectives to strive for to improve performance and development time
 ---
-
-## The mesh
-
-The main aim here is to have 1 mesh per plane, no separate objects
-This improves draw time and therefore performance
+## The goal
+- Control surfaces should have 1 armature bone each
+- Your plane should be 1 mesh, no separate objects, this is only possible due to the armature
+- As little materials as you can get away with (hopefully 2, 1 transparent for the canopy and 1 for the rest of the body)
+- If user doesn't see it 70% of the time, delete it, this applies to pieces of the landing gear, any internals, faces behind damage models, anything
+	- Ideally you'd make your own plane model, trace any tactically acquired models you have, probably better than
 
 ### Add an Armature to your mesh
 
 - Leave the first bone as a way to move your whole plane, general good practice to leave it at the center of the plane
 - Add one bone to each control surface
-- Use Symmetrize to save time
+- Name any bones on one side with ".R" or ".L" suffix according to their side, you can later right click and Symmetrize to save time
 - Doing this first allows you to merge objects more easily
 
 ## Merge all separate objects
