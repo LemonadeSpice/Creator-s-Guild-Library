@@ -26,3 +26,6 @@ description: Get this library working on your computer
 >You should get messages at the top right like this
 >![[Pasted image 20260615232416.png]]
 >This means progress was successfully saved online
+
+
+^ Lemon note: GitHub desktop is no longer needed, the library can be cloned using git without even authenticating, allowing the user to log in to git using Obsidian, once the git plugin is enabled, changes need to be made to this guide on that
