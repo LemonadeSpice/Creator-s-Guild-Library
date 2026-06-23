@@ -7,26 +7,35 @@ description: A bunch of objectives to strive for to improve performance and deve
 - 1 for the opaque parts of the plane (airframe, whatever is not transparent)
 	- No extra objects, everything that is not transparent should stay the same mesh
 
-^ Technical "why"
-Doing it this way you can set LOD1 or LOD2 for the canopy to remove it completely, cutting on something called overdraw (making the GPU shade the same pixels multiple times)
+>[!info] Technical "why"
+>Using more [[Mesh|meshes]] is unnecessary as the "show", "hide" and [[LOD]] logic will be applied to the whole plane (you won't be changing just an aileron or such), this means the [[CPU]] will have more [[Mesh Renderer]] to go through before passing them to the [[GPU]]
+>
+>Making it 1 [[Mesh|mesh]] would mean you would have [[Alpha Blending|alpha blending]] on the whole plane, this means the whole plane won't write to the [[Depth Buffer|depth buffer]], this means no [[Easy-Z]], so whenever you're looking down at the cockpit, everything behind it is also being rendered
+>
+>For plane worlds you won't be having a lot of these but when you start compounding mistakes you can start seeing a performance drop
 
- Allows for setting LOD1 or LOD2 on the opaque mesh to include a fake non-transparent canopy
- 
- You can sell the effect by using reflection effects to pretend like the light bouncing off the canopy at a distance makes it look opaque
+
+>[!warning] Performance destroyer:  TREES
+>Avoid crowds of transparent foliage like trees with transparent planes for branches
+>
+>Depending on how many you put and how much they overlap on screen, this could turn into an [[Overdraw|overdraw]] nightmare
+>
+>If you want to use trees like that make sure they use a cutout shader instead ([[Alpha Clipping|alpha clipping]])
+>
+>You can still use [[LOD]] to increase definition if the player chooses to go near them (cutout shaders look like ass from up close) but in those cases you can just use an opaque [[Mesh|mesh]]
 
 ## 1 Armature
 - Works with the most GPU-efficient workflow of having 1 mesh for all the opaque sections of the plane
-- Save up on redundant logic
-	- You won't be disabling "just the left aileron" or "just the right landing gear", or having LODs or occlusion culling for each part of the plane, most probably you are going to want to apply the same logic to the whole plane, those Mesh Renderers are not needed
 - Better workflow
-	- Working with bones allows grouping several parts of the plane together, makes it easier to set up accurate pivot points and makes positioning more visible
+	- Working with bones allows grouping several parts of the plane together, makes it easier to set up accurate pivot points for them and makes positioning more visible
 
-### 2 Materials
+## 2 Materials
 - 1 for the transparent sections
 - 1 for the opaque sections
-	- Using a non-transparent-enabled shader allows the GPU to use early depth rejection (Early-Z), it looks into the depth buffer, figures out "every pixel behind this is not worth rendering" and skips it, otherwise it will render everything behind it regardless and then overwrite those pixels with opaque sections, as transparent layers don't write to the depth buffer, wasting performance
 
-### Add an Armature to your mesh
+
+# The steps to reach the goal
+## Add an Armature to your mesh
 
 - Leave the first bone as a way to move your whole plane, general good idea to leave it at the center of the plane
 	- This is the root bone
@@ -39,12 +48,14 @@ Doing it this way you can set LOD1 or LOD2 for the canopy to remove it completel
 
 ## Merge all separate objects
 
-- Add an Armature modifier to the main mesh
+- Add an Armature modifier to the main mesh and to the canopy object (yes, they will use the same armature)
+- Keep the canopy (or canopy glass) a separate object so that you can assign the transparent material on it
 - For each object
 	- Add a Vertex Group with the name of the bone you want to control it (if it's just part of the main body, name it after the root bone)
 	- Go into Edit mode (press Tab)
 	- Select all vertices on the object (press A)
 	- Click on the Vertex Group, select assign and make sure Weight is set to 100%
+	- Make sure to still assign a Vertex Group for the canopy
 
 - Landing gear parts, control surfaces, everything opaque needs to be merged to the main body of the plane, everything will be controlled with bones
 - Keep in mind how much a user will see, ex you can probably strip away most parts of the landing gear, the user will not be seeing that, as long as it's a strut with wheels you're fine
