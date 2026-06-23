@@ -2,17 +2,30 @@
 description: A bunch of objectives to strive for to improve performance and development time
 ---
 # The goal
-## 2 Meshes
+## 2 Meshes, 2 Materials, 1 Material per Mesh
 - 1 for the transparent parts of the canopy (or the entire canopy, your choice)
 - 1 for the opaque parts of the plane (airframe, whatever is not transparent)
 	- No extra objects, everything that is not transparent should stay the same mesh
 
->[!info] Technical "why"
->Using more [[Mesh|meshes]] is unnecessary as the "show", "hide" and [[LOD]] logic will be applied to the whole plane (you won't be changing just an aileron or such), this means the [[CPU]] will have more [[Mesh Renderer]] to go through before passing them to the [[GPU]]
->
->Making it 1 [[Mesh|mesh]] would mean you would have [[Alpha Blending|alpha blending]] on the whole plane, this means the whole plane won't write to the [[Depth Buffer|depth buffer]], this means no [[Easy-Z]], so whenever you're looking down at the cockpit, everything behind it is also being rendered
->
->For plane worlds you won't be having a lot of these but when you start compounding mistakes you can start seeing a performance drop
+### Technical FAQ
+
+#### Why not more meshes?
+Using more [[Mesh|meshes]] is unnecessary as the "show", "hide" and [[LOD]] logic will be applied to the whole plane (you won't be changing just an aileron or such), this means the [[CPU]] will have more [[Mesh Renderer]] to go through before passing them to the [[GPU]]
+
+#### Why not 1 mesh?
+TLDR: When making it 1 [[Mesh|mesh]] you will still need 2 [[Material|materials]], if you have 1 mesh you miss out on using [[LOD]] to remove the canopy as a whole
+
+Here are the possible cases:
+##### 1 whole transparent material
+Using 1 transparent ([[Alpha Blending|alpha blended]]) material will for the whole plane, means the whole plane won't write to the [[Depth Buffer|depth buffer]], this means no [[Easy-Z]], so whenever you're looking down at the cockpit, everything behind it is also being rendered
+
+This also means sometimes things will render on top of your plane when they shouldn't
+##### 1 whole opaque material
+You will have to have no canopy glass geometry at all (no reflections or refraction)
+You could use a cutout shader to make the canopy transparent but it will be 100% transparent, pixels from it will not be rendered
+
+##### 2 materials, 1 mesh
+You can assign 2 different materials in the same mesh, you'd have saved up one mesh (not a big deal) but for the GPU changing materials is more expensive than changing meshes, so in the end you win nothing by this but now you can't use [[LOD]] to remove the canopy entirely when far away, this is still the second best option though, as the canopy from far away will be a few pixels at most
 
 
 >[!warning] Performance destroyer:  TREES 🌳
