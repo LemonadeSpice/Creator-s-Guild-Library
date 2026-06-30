@@ -1,3 +1,5 @@
+(Page is Unfinished)
+
 NH here. This is a great method for how to texture nice runways, buildings, large terrain pieces etc.
 The method allows us to take several tiling textures and blend them smoothly together. 
 
